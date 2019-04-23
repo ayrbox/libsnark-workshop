@@ -25,7 +25,16 @@ int main(int argc, char *argv[])
 
     if (circuit_type.compare("42") == 0)
     {
-        circuit = FortyTwoCircuit();
+        if (argc != 5)
+        {
+            cerr << "Need exactly 4 arguments (circuit type, path to pk, path ";
+            cerr << "to proof, number)" << endl;
+            return 1;
+        }
+        auto ft_circuit = FortyTwoCircuit();
+        string number_val = argv[4];
+        ft_circuit.pb.val(ft_circuit.in) = FieldT(number_val.c_str());
+        circuit = ft_circuit;
     }
     else
     {

@@ -24,3 +24,6 @@ target_link_libraries(set_up zkpworkshop)
 
 add_executable(prove prove.cpp)
 target_link_libraries(prove zkpworkshop)
+
+add_executable(verify verify.cpp)
+target_link_libraries(verify zkpworkshop)
