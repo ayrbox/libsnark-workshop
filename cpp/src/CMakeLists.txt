@@ -1,19 +1,23 @@
 include_directories(.)
 
-add_executable(
-    test
+add_library(zkpworkshop circuitry/FortyTwoCircuit.cpp)
 
-    test.cpp
-)
 target_link_libraries(
-    test
+    zkpworkshop
 
     snark
 )
 target_include_directories(
-    test
+    zkpworkshop
 
     PUBLIC
     ${DEPENDS_DIR}/libsnark
     ${DEPENDS_DIR}/libsnark/depends/libff
+    ${DEPENDS_DIR}/libsnark/depends/libfqfft
 )
+
+add_executable(test test.cpp)
+target_link_libraries(test zkpworkshop)
+
+add_executable(set_up set_up.cpp)
+target_link_libraries(set_up zkpworkshop)
