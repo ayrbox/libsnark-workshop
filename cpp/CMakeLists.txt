@@ -18,7 +18,13 @@ set(
     "Optionally specify the dependency installation directory relative to the source directory (default: inside dependency folder)"
 )
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -Wextra -Wfatal-errors -pthread")
+option(
+    BINARY_OUTPUT
+    "In serialization, output raw binary data (instead of decimal), which is smaller and faster."
+    OFF
+)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wfatal-errors -pthread")
 
 add_definitions(-DCURVE_${CURVE})
 

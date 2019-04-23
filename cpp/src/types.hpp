@@ -11,4 +11,5 @@ namespace zkpworkshop {
     typedef libsnark::r1cs_constraint<FieldT> r1cs_constraint;
     typedef libsnark::r1cs_ppzksnark_proving_key<r1cs_ppzksnark_pp> r1cs_ppzksnark_proving_key;
     typedef libsnark::r1cs_ppzksnark_verification_key<r1cs_ppzksnark_pp> r1cs_ppzksnark_verification_key;
+    typedef libsnark::r1cs_ppzksnark_proof<r1cs_ppzksnark_pp> r1cs_ppzksnark_proof;
 }
