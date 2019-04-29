@@ -57,8 +57,6 @@ int main(int argc, char *argv[])
     auto proof = libsnark::r1cs_ppzksnark_prover<r1cs_ppzksnark_pp>(
         pk, primary_input, auxiliary_input);
 
-    cout << proof << endl;
-    
     write_to_file<r1cs_ppzksnark_proof>(argv[3], proof);
 
     return 0;
