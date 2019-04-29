@@ -1,17 +1,15 @@
-#include <string>
-#include <libff/algebra/curves/public_params.hpp>
-#include <libsnark/zk_proof_systems/ppzksnark/r1cs_ppzksnark/r1cs_ppzksnark.hpp>
-#include "types.hpp"
 #include "circuitry/FortyTwoCircuit.hpp"
 #include "serialization.hpp"
+#include "types.hpp"
+#include <libff/algebra/curves/public_params.hpp>
+#include <libsnark/zk_proof_systems/ppzksnark/r1cs_ppzksnark/r1cs_ppzksnark.hpp>
+#include <string>
 
 using namespace std;
 using namespace zkpworkshop;
 
-int main(int argc, char *argv[])
-{
-    if (argc < 4)
-    {
+int main(int argc, char *argv[]) {
+    if (argc < 4) {
         cerr << "Need at least 3 arguments (circuit type, path to pk, ";
         cerr << "path to proof)" << endl;
         return 1;
@@ -23,10 +21,8 @@ int main(int argc, char *argv[])
 
     Circuit circuit;
 
-    if (circuit_type.compare("42") == 0)
-    {
-        if (argc != 5)
-        {
+    if (circuit_type.compare("forty_two") == 0) {
+        if (argc != 5) {
             cerr << "Need exactly 4 arguments (circuit type, path to pk, path ";
             cerr << "to proof, number)" << endl;
             return 1;
@@ -35,9 +31,7 @@ int main(int argc, char *argv[])
         string number_val = argv[4];
         ft_circuit.pb.val(ft_circuit.in) = FieldT(number_val.c_str());
         circuit = ft_circuit;
-    }
-    else
-    {
+    } else {
         std::cerr << "Invalid circuit type" << endl;
         return 1;
     }

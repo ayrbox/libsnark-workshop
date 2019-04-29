@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
     Circuit circuit;
 
-    if (circuit_type.compare("42") == 0) {
+    if (circuit_type.compare("forty_two") == 0) {
         circuit = FortyTwoCircuit();
     } else {
         std::cerr << "Invalid circuit type" << endl;
