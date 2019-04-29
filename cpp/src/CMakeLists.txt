@@ -1,10 +1,11 @@
 include_directories(.)
 
-add_library(zkpworkshop circuitry/FortyTwoCircuit.cpp)
+add_library(zkpworkshop circuitry/FortyTwoCircuit.cpp json_conversion.cpp)
 
 target_link_libraries(
     zkpworkshop
 
+    jsoncpp
     snark
 )
 target_include_directories(
@@ -27,3 +28,9 @@ target_link_libraries(prove zkpworkshop)
 
 add_executable(verify verify.cpp)
 target_link_libraries(verify zkpworkshop)
+
+add_executable(convert_vk convert_vk.cpp)
+target_link_libraries(convert_vk zkpworkshop)
+
+add_executable(convert_proof convert_proof.cpp)
+target_link_libraries(convert_proof zkpworkshop)
