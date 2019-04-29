@@ -28,8 +28,8 @@ contract ProofCoin is ERC20 {
             [proof[16], proof[17]], // k
             publicInputs
         )) {
-            // transfer(msg.sender, 1000000000000000000);
             emit CorrectProof();
+            _mint(msg.sender, 1 ether);
         } else {
             emit IncorrectProof();
         }

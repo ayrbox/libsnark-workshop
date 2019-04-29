@@ -1,5 +1,6 @@
 'use strict'
 
+const assert = require('assert')
 const compileContracts = require('../compile-contracts')
 const util = require('../util')
 const _ = require('lodash')
@@ -26,15 +27,20 @@ describe('Proof verification on chain', function () {
 
   it('works', async function() {
     const alice = web3.eth.accounts.create()
-    const aliceBalanceBefore = await proofCoin.methods.balanceOf(alice._address).call()
+    const aliceBalanceBefore = await proofCoin.methods.balanceOf(alice.address).call()
     expect(aliceBalanceBefore).to.equal('0')
     const proof = await loadProof('/tmp/proof')
-    await sendTransaction(
+    const result = await sendTransaction(
       web3,
       proofCoin._address,
       proofCoin.methods.verifyProof([], proof).encodeABI(),
-      50000000
+      alice
     )
+    assert(_.some(_.map(result.logs, logEntry => {
+      return _.first(logEntry.topics) === web3.utils.keccak256('CorrectProof()')
+    })))
+    const aliceBalanceAfter = await proofCoin.methods.balanceOf(alice.address).call()
+    expect(aliceBalanceAfter).to.equal(web3.utils.toWei('1', 'ether'))
   })
 
 })

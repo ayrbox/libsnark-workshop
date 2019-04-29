@@ -1,9 +1,9 @@
-async function sendTransaction(web3, to, data, gas = 50000000, account = null) {
+async function sendTransaction(web3, to, data, account = null, gas = 50000000, gasPrice = 0) {
   const txParams = {
     to,
     data,
     gas,
-    gasPrice: 0
+    gasPrice
   }
   if (account === null) {
     account = web3.eth.accounts.create()

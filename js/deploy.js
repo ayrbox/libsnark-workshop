@@ -6,7 +6,7 @@ async function deploy(web3, contractArtefacts, args = [], account = null, gas = 
     data: contractArtefacts.bytecode,
     arguments: args
   }).encodeABI()
-  const receipt = await sendTransaction(web3, null, data, gas, account)
+  const receipt = await sendTransaction(web3, null, data, account, gas)
   return receipt.contractAddress
 }
 
