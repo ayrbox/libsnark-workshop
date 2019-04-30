@@ -1,5 +1,6 @@
 #include "circuitry/FortyTwoCircuit.hpp"
 #include "circuitry/VitaliksExampleCircuit.hpp"
+#include "circuitry/VitalikExampleCircuitGadgetCircuit.hpp"
 #include "serialization.hpp"
 #include "types.hpp"
 #include <libff/algebra/curves/public_params.hpp>
@@ -56,6 +57,17 @@ int main(int argc, char *argv[]) {
       ve_circuit.pb.val(ve_circuit.sym_2) = FieldT(sym_2_val.c_str());
 
       circuit = ve_circuit;
+    } else if (circuit_type.compare("vitalik_gadget") == 0) {
+      if (argc != 5) {
+        cerr << "Need exactly 4 argumenst (circut type, path to pk, path)";
+        cerr << "to proof, nmber" << endl;
+        return 1;
+      }
+      VitaliksExampleCircuitGadgetCircuit vecg_circuit;
+      string x_val = argv[4];
+      vecg_circuit.pb.val(vecg_circuit.x) = FieldT(x_val.c_str());
+      vecg_circuit.gadget->generate_r1cs_witness();
+      circuit = vecg_circuit;
     } else {
         std::cerr << "Invalid circuit type" << endl;
         return 1;

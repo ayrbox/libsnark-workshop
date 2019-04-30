@@ -1,7 +1,9 @@
+#pragma once
+
 #include <libsnark/common/default_types/r1cs_ppzksnark_pp.hpp>
 #include <libsnark/gadgetlib1/protoboard.hpp>
+#include <libsnark/gadgetlib1/gadget.hpp>
 #include <libsnark/zk_proof_systems/ppzksnark/r1cs_ppzksnark/r1cs_ppzksnark.hpp>
-
 
 namespace zkpworkshop {
     typedef libsnark::default_r1cs_ppzksnark_pp r1cs_ppzksnark_pp;
@@ -12,4 +14,5 @@ namespace zkpworkshop {
     typedef libsnark::r1cs_ppzksnark_proving_key<r1cs_ppzksnark_pp> r1cs_ppzksnark_proving_key;
     typedef libsnark::r1cs_ppzksnark_verification_key<r1cs_ppzksnark_pp> r1cs_ppzksnark_verification_key;
     typedef libsnark::r1cs_ppzksnark_proof<r1cs_ppzksnark_pp> r1cs_ppzksnark_proof;
+    typedef libsnark::gadget<FieldT> Gadget;
 }

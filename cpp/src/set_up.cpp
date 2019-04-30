@@ -4,6 +4,7 @@
 #include "types.hpp"
 #include "circuitry/FortyTwoCircuit.hpp"
 #include "circuitry/VitaliksExampleCircuit.hpp"
+#include "circuitry/VitalikExampleCircuitGadgetCircuit.hpp"
 #include "serialization.hpp"
 
 using namespace std;
@@ -26,6 +27,8 @@ int main(int argc, char *argv[]) {
       circuit = FortyTwoCircuit();
     } else if (circuit_type.compare("vitalik") == 0) {
       circuit = VitaliksExampleCircuit();
+    } else if (circuit_type.compare("vitalik_gadget") == 0) {
+      circuit = VitaliksExampleCircuitGadgetCircuit();
     } else {
         std::cerr << "Invalid circuit type" << endl;
         return 1;

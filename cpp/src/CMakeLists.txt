@@ -1,6 +1,13 @@
 include_directories(.)
 
-add_library(zkpworkshop circuitry/FortyTwoCircuit.cpp circuitry/VitaliksExampleCircuit.cpp json_conversion.cpp )
+add_library(
+  zkpworkshop
+  circuitry/FortyTwoCircuit.cpp
+  circuitry/VitaliksExampleCircuit.cpp
+  circuitry/VitalikExampleCircuitGadgetCircuit.cpp
+  circuitry/gadgets/VitaliksExampleCircuitGadget.cpp
+  json_conversion.cpp
+)
 
 target_link_libraries(
     zkpworkshop
