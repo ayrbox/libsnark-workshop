@@ -15,7 +15,7 @@ describe('Proof verification on chain', function () {
 
   before(async function () {
     web3 = util.initWeb3()
-    const artefacts = await compileContracts('/tmp/vk')
+    const artefacts = await compileContracts(process.env.PK || '/tmp/pk')
     const verifierAddr = await deploy(web3, artefacts.Verifier)
     const proofCoinAddr = await deploy(
       web3,
@@ -29,11 +29,13 @@ describe('Proof verification on chain', function () {
     const alice = web3.eth.accounts.create()
     const aliceBalanceBefore = await proofCoin.methods.balanceOf(alice.address).call()
     expect(aliceBalanceBefore).to.equal('0')
-    const proof = await loadProof('/tmp/proof')
+    const proof = await loadProof(process.env.PROOF || '/tmp/proof')
+    const publicInputsRaw = '35' // process.env.PUBLIC_INPUTS || ''
+    const publicInputs = publicInputsRaw.split(' ')
     const result = await sendTransaction(
       web3,
       proofCoin._address,
-      proofCoin.methods.verifyProof([], proof).encodeABI(),
+      proofCoin.methods.verifyProof(publicInputs, proof).encodeABI(),
       alice
     )
     assert(_.some(_.map(result.logs, logEntry => {

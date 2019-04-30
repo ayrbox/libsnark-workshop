@@ -1,4 +1,5 @@
 #include "circuitry/FortyTwoCircuit.hpp"
+#include "circuitry/VitaliksExampleCircuit.hpp"
 #include "serialization.hpp"
 #include "types.hpp"
 #include <libff/algebra/curves/public_params.hpp>
@@ -31,6 +32,30 @@ int main(int argc, char *argv[]) {
         string number_val = argv[4];
         ft_circuit.pb.val(ft_circuit.in) = FieldT(number_val.c_str());
         circuit = ft_circuit;
+
+    } else if(circuit_type.compare("vitalik") == 0) {
+      if (argc != 9) {
+        cerr << "Need exactly 8 argumenst (circut type, path to pk, path)";
+        cerr << "to proof, nmber" << endl;
+        return 1;
+      }
+      auto ve_circuit = VitaliksExampleCircuit();
+      string out_val = argv[4];
+      ve_circuit.pb.val(ve_circuit.out) = FieldT(out_val.c_str());
+
+      string x_val = argv[5];
+      ve_circuit.pb.val(ve_circuit.x) = FieldT(x_val.c_str());
+
+      string sym_1_val = argv[6];
+      ve_circuit.pb.val(ve_circuit.sym_1) = FieldT(sym_1_val.c_str());
+
+      string y_val = argv[7];
+      ve_circuit.pb.val(ve_circuit.y) = FieldT(y_val.c_str());
+
+      string sym_2_val = argv[8];
+      ve_circuit.pb.val(ve_circuit.sym_2) = FieldT(sym_2_val.c_str());
+
+      circuit = ve_circuit;
     } else {
         std::cerr << "Invalid circuit type" << endl;
         return 1;

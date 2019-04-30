@@ -3,6 +3,7 @@
 #include <libsnark/zk_proof_systems/ppzksnark/r1cs_ppzksnark/r1cs_ppzksnark.hpp>
 #include "types.hpp"
 #include "circuitry/FortyTwoCircuit.hpp"
+#include "circuitry/VitaliksExampleCircuit.hpp"
 #include "serialization.hpp"
 
 using namespace std;
@@ -22,7 +23,9 @@ int main(int argc, char *argv[]) {
     Circuit circuit;
 
     if (circuit_type.compare("forty_two") == 0) {
-        circuit = FortyTwoCircuit();
+      circuit = FortyTwoCircuit();
+    } else if (circuit_type.compare("vitalik") == 0) {
+      circuit = VitaliksExampleCircuit();
     } else {
         std::cerr << "Invalid circuit type" << endl;
         return 1;
@@ -36,4 +39,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-
